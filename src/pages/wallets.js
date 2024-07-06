@@ -2682,7 +2682,7 @@ export default class wallets extends React.Component {
                 <div className="flex-none rounded-full bg-emerald-500/20 p-1">
                   <div className="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
                 </div>
-                <span className="text-sm font-semibold leading-6 text-gray-900">D'CENT Wallet</span>
+                <span className="text-sm font-semibold leading-6 text-gray-900">{"D'CENT Wallet"}</span>
               </div>
             </div>
             </div>
