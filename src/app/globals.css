@@ -113,3 +113,20 @@ body {
   --tw-text-opacity: 1;
   color: rgb(249 81 146 / var(--tw-text-opacity));
 }
+.border-b {
+  border-bottom-width: 1px;
+}
+.duration-300 {
+  transition-duration: .3s;
+}
+.sticky-sidebar {
+  top: 0;
+}
+.hidden-against-adblock {
+  display: none;
+}
+.site-max-width {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}

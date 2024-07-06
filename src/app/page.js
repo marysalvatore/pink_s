@@ -318,7 +318,18 @@ export default function Home() {
             <Image alt="PinkSale" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" style="color:transparent" src={pinksale} />
             </a>
           </div>
-          <div className="flex-1 hidden-against-adblock md:block"><div className="relative inline-block w-full lg:w-1/2"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" className="text-neutral-500 dark:text-brand-text-dark absolute left-2 top-1/2 -translate-y-1/2" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path></svg><input placeholder="Type token symbol, address to find your launchpad" className="transition-all outline-none focus:shadow-outline border dark:text-brand-text-dark py-[5px] focus:border-brand dark:border-neutral-800 w-full px-8 text-sm dark:text-brand-text-dark dark:bg-brand-dark rounded-md" type="text" /><svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" className="text-neutral-500 dark:text-brand-text-dark absolute right-2 top-1/2 -translate-y-1/2" height="18" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M16.1925 7.70711C15.8019 7.31658 15.1688 7.31658 14.7782 7.70711L7.70718 14.7782C7.31665 15.1687 7.31665 15.8019 7.70718 16.1924C8.0977 16.5829 8.73087 16.5829 9.12139 16.1924L16.1925 9.12132C16.583 8.7308 16.583 8.09763 16.1925 7.70711Z" fill="currentColor"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5Z" fill="currentColor"></path></svg></div></div>
+          <div className="flex-1 hidden-against-adblock md:block">
+            <div className="relative inline-block w-full lg:w-1/2">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" className="text-neutral-500 dark:text-brand-text-dark absolute left-2 top-1/2 -translate-y-1/2" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
+              </svg>
+              <input placeholder="Type token symbol, address to find your launchpad" className="transition-all outline-none focus:shadow-outline border dark:text-brand-text-dark py-[5px] focus:border-brand dark:border-neutral-800 w-full px-8 text-sm dark:text-brand-text-dark dark:bg-brand-dark rounded-md" type="text" />
+              <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" className="text-neutral-500 dark:text-brand-text-dark absolute right-2 top-1/2 -translate-y-1/2" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.1925 7.70711C15.8019 7.31658 15.1688 7.31658 14.7782 7.70711L7.70718 14.7782C7.31665 15.1687 7.31665 15.8019 7.70718 16.1924C8.0977 16.5829 8.73087 16.5829 9.12139 16.1924L16.1925 9.12132C16.583 8.7308 16.583 8.09763 16.1925 7.70711Z" fill="currentColor"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5Z" fill="currentColor"></path>
+              </svg>
+            </div>
+          </div>
           <div className="flex-1 block md:hidden-against-adblock text-right">
             <div className="flex gap-2 sm:gap-4 items-center justify-end"><div>
               <a href="/search">
@@ -341,7 +352,33 @@ export default function Home() {
             </button>
           </div>
         </div>
-        </div></div>
+        </div>
+          </div>
+
+          {/* <div class="hidden-against-adblock md:flex">
+              <div class="items-center gap-4 flex">
+                <a href="https://www.dexview.com/" class="p-3 rounded-md border flex dark:border-neutral-800" target="_blank" rel="nofollow noreferrer">
+                  <Image src={dexview} alt="Dexview" height="20" width="20" class="w-[20px] h-[20px]" />
+                  <span class="ml-2 font-[500] text-sm hidden-against-adblock md:block">dexview.com</span>
+                </a>
+                <div>
+                <button type="button" class="ant-btn ant-btn-primary">
+                  <div class="flex items-center gap-1">
+                    <div>Connect</div>
+                    <div class="hidden-against-adblock sm:block">Wallet</div>
+                  </div>
+                </button>
+                </div>
+              </div>
+          </div> */}
+          <div class="md:hidden">
+            <button>
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="inline-block" height="30" width="30" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="48" d="M88 152h336M88 256h336M88 360h336"></path>
+              </svg>
+            </button>
+          </div>
+
 
         </header>
 
@@ -377,8 +414,8 @@ export default function Home() {
           <div style={{opacity:1, transform:"none"}}>
               <div class="mx-auto my-4 sm:my-6 md:my-12 container">
                   <div class="flex gap-4 items-center flex-col md:flex-row">
-                      <div class="flex">
-                          <section class="py-8 sm:py-16 md:py-20 lg:py-24 flex flex-col justify-center text-center md:text-left">
+
+                          <section class="py-8 sm:py-16 md:py-20 lg:py-24 flex flex-col justify-center text-center md:text-left p-5">
                               <div>
                               <h1 class="text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-semibold leading-relaxed">The Launchpad Protocol for Everyone</h1>
                               <p class="leading-relaxed pt-6">PinkSale helps everyone to create their own tokens and token sales in few seconds.</p>
@@ -419,7 +456,7 @@ export default function Home() {
                               </div>
                             </div>
                           </div>
-                         </div></div>
+                         </div>
                       </div>
                   </div>
 
@@ -611,7 +648,7 @@ export default function Home() {
                       </div>
                   </div>
 
-                  <section class="mt-32 text-center mb-12">
+                  <section class="mt-32 text-center mb-12 p-5">
                     <h2 class="leading-relaxed text-2xl font-semibold mb-4">A Suite of Tools for Token Sales</h2>
                     <p class="leading-relaxed">A suite of tools were built to help you create your own tokens and launchpads in a fast,<br /> simple and cheap way, with no prior code knowledge required and 100% decentralized!</p>
 
@@ -672,7 +709,7 @@ export default function Home() {
                           </div>
                   </section>
 
-                  <section class="mt-32 text-center mb-12">
+                  <section class="mt-32 text-center mb-12 p-5">
                   <h2 class="leading-relaxed text-2xl font-semibold mb-4">A Growing Protocol Ecosystem</h2>
                   <p class="leading-relaxed">We build a suite of tools for the world of decentralized finance. PinkMoon, PinkSale, PinkElon PinkLock, PinkSwap, we Pink everything!</p>
                   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-12">
@@ -728,11 +765,11 @@ export default function Home() {
 
        <footer class="bg-white dark:bg-brand-dark text-center text-sm border-t dark:border-neutral-800">
           <div class="mx-auto my-4 sm:my-6 md:my-12 container">
-          <div>Disclaimer: PinkSale will never endorse or encourage that you invest in any of the projects listed and therefore, accept no liability for any loss occasioned. It is the user(s) responsibility to do their own research and seek financial advice from a professional. More information about (DYOR) can be found via
+          <div class="p-5">Disclaimer: PinkSale will never endorse or encourage that you invest in any of the projects listed and therefore, accept no liability for any loss occasioned. It is the user(s) responsibility to do their own research and seek financial advice from a professional. More information about (DYOR) can be found via
             <a href="https://academy.binance.com/en/glossary/do-your-own-research" class="text-brand-500 hover:underline text-[#f95192]" target="_blank"> Binance Academy</a>.
           </div>
           <div class="border-b w-full dark:border-neutral-800 border-dashed my-4 sm:my-6 md:my-12"></div>
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-left mt-6">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 text-left mt-6 p-5">
             <div>
               <div class="flex items-center gap-2">
                 <div class="flex-shrink-0">
@@ -833,6 +870,7 @@ export default function Home() {
        </footer>
 
       </div>
+
       <div class="fixed transition-all inset-0 z-[101] pointer-events-none invisible opacity-0">
         <div class="relative h-full"><div class="h-full w-full absolute z-10 bg-modal-overlay dark:bg-modal-overlay-dark" style={{opacity:"0"}}></div>
         `<div class="h-full overflow-y-auto py-6 pt-12 px-4">
@@ -854,6 +892,11 @@ export default function Home() {
       </div>
       </div>
 
+      <div class="fixed transition-all inset-0 z-[101] pointer-events-none invisible opacity-0"><div class="relative h-full"><div class="h-full w-full absolute z-10 bg-modal-overlay dark:bg-modal-overlay-dark" style={{opacity:"0"}}></div><div class="h-full overflow-y-auto py-6 pt-12 px-4"><div class="mx-auto relative z-20 rounded-sm shadow-md bg-white dark:bg-brand-dark h-auto overflow-y-auto max-w-lg" style={{opacity:'0',transform: "translateY(32px) translateZ(0)"}}><div class="p-4 rounded-t-md flex gap-4 relative"><div class="flex-1"><div class="font-medium capitalize text-lg">Missing the pool details information?</div></div><button type="button" class="ant-btn ant-btn-link ant-btn-sm ant-btn-icon-only p-2 absolute right-1 top-0"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="28" width="28" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144m224 0L144 368"></path></svg></button></div><div class="p-4"></div></div></div></div></div>
+
+      <div class="fixed transition-all inset-0 z-[101] pointer-events-none invisible opacity-0"><div class="relative h-full"><div class="h-full w-full absolute z-10 bg-modal-overlay dark:bg-modal-overlay-dark" style={{opacity:"0"}}></div><div class="h-full overflow-y-auto py-6 pt-12 px-4"><div class="mx-auto relative z-20 rounded-sm shadow-md bg-white dark:bg-brand-dark h-auto overflow-y-auto max-w-lg" style={{opacity:'0',transform: "translateY(32px) translateZ(0)"}}><div class="p-4 rounded-t-md flex gap-4 relative"><div class="flex-1"><div class="font-medium capitalize text-lg">Settings</div><div class="text-sm text-gray-400 pr-6">Customize your RPC and more on Solana</div></div><button type="button" class="ant-btn ant-btn-link ant-btn-sm ant-btn-icon-only p-2 absolute right-1 top-0"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="28" width="28" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144m224 0L144 368"></path></svg></button></div><div class="p-4"></div></div></div></div></div>
+
+      <div class="fixed transition-all inset-0 z-[101] pointer-events-none invisible opacity-0"><div class="relative h-full"><div class="h-full w-full absolute z-10 bg-modal-overlay dark:bg-modal-overlay-dark" style={{opacity:"0"}}></div><div class="h-full overflow-y-auto py-6 pt-12 px-4"><div class="mx-auto relative z-20 rounded-sm shadow-md bg-white dark:bg-brand-dark h-auto overflow-y-auto max-w-lg" style={{opacity:'0',transform: "translateY(32px) translateZ(0)"}}><div class="p-4 rounded-t-md flex gap-4 relative"><div class="flex-1"><div class="font-medium capitalize text-lg">Slippage Setting</div></div><button type="button" class="ant-btn ant-btn-link ant-btn-sm ant-btn-icon-only p-2 absolute right-1 top-0"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="28" width="28" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144m224 0L144 368"></path></svg></button></div><div class="p-4"></div></div></div></div></div>
 
     </div>
 
