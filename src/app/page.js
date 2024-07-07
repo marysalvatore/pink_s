@@ -559,7 +559,7 @@ export default function Home() {
                                 </div>
                               </div>
                               <div class="text-xs py-2 px-4 border-t border-dashed dark:border-neutral-300 flex items-center gap-2"><div>
-                              <Image alt="PinkSale" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" style={{color:"transparent"}} src="/_next/static/media/ic-pinksale.61500ae2.svg" /></div>
+                              <Image alt="PinkSale" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" style={{color:"transparent"}} src={pinksale} /></div>
                               <div class="flex-1"><a href="https://www.coingecko.com/en/coins/pinksale" class="underline hover:text-brand" target="_blank" rel="nofollow noreferrer">PINKSALE</a></div>
                               <div class="text-brand">
                                 <a href="https://www.coingecko.com/en/coins/pinksale" target="_blank" rel="nofollow noreferrer">$239.18</a>
