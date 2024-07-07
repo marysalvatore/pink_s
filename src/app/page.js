@@ -25,16 +25,19 @@ import arbitrum from '../../public/arbitrum.svg'
 import polygon from '../../public/polygon.png'
 import avax from '../../public/avax.svg'
 import fantom from '../../public/fantom.svg'
+import Aux from "@/components/hoc/Auxiliary/Auxiliary";
 
 
 export default function Home() {
   const router = useRouter();
 
   const clicked = () => {
-    router.push('/wallets')
+    router.push('/wallet')
   }
 
+
   const [data, setData] = useState({})
+  const [ change, setChange] = useState(false);
 
   useEffect(() => {
     async function  fetchData() {
@@ -48,9 +51,14 @@ export default function Home() {
     fetchData()
   }, [])
 
-  return (
+  const change_ = () => {
+    console.log('i am clicked!')
+    setChange(!change)
+  }
 
-    <div className="site-max-width">
+  return (
+    <Aux>
+      <div className="site-max-width">
       <div data-scroll-watcher="true"></div>
       <div className="fixed h-screen w-[75px] bg-white dark:bg-brand-dark transition-all duration-300 hover:w-[250px] overflow-hidden overflow-y-auto no-scrollbar z-[100] hidden-against-adblock md:block group border-r dark:border-neutral-800 shadow-sm">
         <a className="transition-all flex items-center gap-2 sticky top-0 left-0 bg-white dark:bg-brand-dark dark:border-neutral-800 border-b hover:stroke-2 h-[75px]"
@@ -315,7 +323,7 @@ export default function Home() {
         <header className="px-6 py-4 sticky top-0 right-0 flex items-center h-[75px] gap-4 bg-white dark:bg-brand-dark z-50 border-b dark:border-neutral-800">
           <div className="flex-shrink-0 block md:hidden">
             <a href="/">
-            <Image alt="PinkSale" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" style="color:transparent" src={pinksale} />
+            <Image alt="PinkSale" loading="lazy" width="32" height="32" decoding="async" data-nimg="1" style={{color:"transparent"}} src={pinksale} />
             </a>
           </div>
           <div className="flex-1 hidden-against-adblock md:block">
@@ -338,7 +346,7 @@ export default function Home() {
                 </svg>
               </a>
             </div>
-            <a href="https://www.dexview.com/" className="p-3 rounded-md border flex dark:border-neutral-800" target="_blank" rel="nofollow noreferrer">
+            <a href="https://www.dexview.com/" className="p-3 rounded-md border flex dark:border-neutral-300" target="_blank" rel="nofollow noreferrer">
               <Image src={dexview} height={20} width={20} alt="Dexview" className="w-[20px] h-[20px]" />
               <span className="ml-2 font-[500] text-sm hidden-against-adblock md:block" >dexview.com</span>
             </a>
@@ -372,7 +380,7 @@ export default function Home() {
               </div>
           </div> */}
           <div class="md:hidden">
-            <button>
+            <button onClick={change_}>
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="inline-block" height="30" width="30" xmlns="http://www.w3.org/2000/svg">
                 <path fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="48" d="M88 152h336M88 256h336M88 360h336"></path>
               </svg>
@@ -449,7 +457,7 @@ export default function Home() {
                                 </div>
                               </div>
                               <div class="text-xs py-2 px-4 border-t border-dashed dark:border-neutral-800 flex items-center gap-2"><div>
-                              <Image alt="PinkSale" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" style="color:transparent" src="/_next/static/media/ic-pinksale.61500ae2.svg" /></div>
+                              <Image alt="PinkSale" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" style={{color:"transparent"}} src="/_next/static/media/ic-pinksale.61500ae2.svg" /></div>
                               <div class="flex-1"><a href="https://www.coingecko.com/en/coins/pinksale" class="underline hover:text-brand" target="_blank" rel="nofollow noreferrer">PINKSALE</a></div>
                               <div class="text-brand">
                                 <a href="https://www.coingecko.com/en/coins/pinksale" target="_blank" rel="nofollow noreferrer">$239.18</a>
@@ -898,7 +906,295 @@ export default function Home() {
 
       <div class="fixed transition-all inset-0 z-[101] pointer-events-none invisible opacity-0"><div class="relative h-full"><div class="h-full w-full absolute z-10 bg-modal-overlay dark:bg-modal-overlay-dark" style={{opacity:"0"}}></div><div class="h-full overflow-y-auto py-6 pt-12 px-4"><div class="mx-auto relative z-20 rounded-sm shadow-md bg-white dark:bg-brand-dark h-auto overflow-y-auto max-w-lg" style={{opacity:'0',transform: "translateY(32px) translateZ(0)"}}><div class="p-4 rounded-t-md flex gap-4 relative"><div class="flex-1"><div class="font-medium capitalize text-lg">Slippage Setting</div></div><button type="button" class="ant-btn ant-btn-link ant-btn-sm ant-btn-icon-only p-2 absolute right-1 top-0"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="28" width="28" xmlns="http://www.w3.org/2000/svg"><path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144m224 0L144 368"></path></svg></button></div><div class="p-4"></div></div></div></div></div>
 
-    </div>
+      </div>
+
+      <div>
+        <div class="ant-drawer transition-all ant-drawer-right ant-drawer-open" tabindex="-1">
+        <div onClick={() => setChange(false)} class={["ant-drawer-mask", change ? '' : 'ant-drawer-content-wrapper-hidden'].join(' ')}></div>
+        <div tabindex="0" aria-hidden="true" data-sentinel="start" style={{width: '0px', height: '0px', overflow: 'hidden', outline: 'none', position: 'absolute'}}></div>
+        <div class={["ant-drawer-content-wrapper", change ? '' : 'ant-drawer-content-wrapper-hidden'].join(' ')} style={{width: '250px'}}>
+          <div class="ant-drawer-content" aria-modal="true" role="dialog">
+            <div class="ant-drawer-wrapper-body">
+              <div class="ant-drawer-header">
+                  <button type="button" onClick={() => setChange(false)} aria-label="Close" class="ant-drawer-close">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-gray-500 dark:text-[white-200]" font-size="20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M289.94 256l95-95A24 24 0 00351 127l-95 95-95-95a24 24 0 00-34 34l95 95-95 95a24 24 0 1034 34l95-95 95 95a24 24 0 0034-34z"></path>
+                    </svg>
+                  </button>
+                  <div class="ant-drawer-title">
+                    <div class="items-center gap-4 flex">
+                      <div>
+                        <button type="button" onClick={clicked} class="ant-btn ant-btn-primary">
+                          <div class="flex items-center gap-1">
+                            <div>Connect</div>
+                          <div class="hidden-against-adblock sm:block">Wallet</div>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="ant-drawer-body">
+                <ul class="my-2">
+                  <li>
+                    <div class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black ">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.92 2.38A15.72 15.72 0 0 0 17.5 2a8.26 8.26 0 0 0-6 2.06Q9.89 5.67 8.31 7.27c-1.21-.13-4.08-.2-6 1.74a1 1 0 0 0 0 1.41l11.3 11.32a1 1 0 0 0 1.41 0c1.95-2 1.89-4.82 1.77-6l3.21-3.2c3.19-3.19 1.74-9.18 1.68-9.43a1 1 0 0 0-.76-.73zm-2.36 8.75L15 14.67a1 1 0 0 0-.27.9 6.81 6.81 0 0 1-.54 3.94L4.52 9.82a6.67 6.67 0 0 1 4-.5A1 1 0 0 0 9.39 9s1.4-1.45 3.51-3.56A6.61 6.61 0 0 1 17.5 4a14.51 14.51 0 0 1 2.33.2c.24 1.43.62 5.04-1.27 6.93z"></path>
+                          <circle cx="15.73" cy="8.3" r="2"></circle>
+                          <path d="M5 16c-2 1-2 5-2 5a7.81 7.81 0 0 0 5-2z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Launchpads</div>
+                    </div>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <div class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black ">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M256.16 15.822c-74.685 0-124.825 36.292-157.865 90.487C66.36 158.692 51.637 228.053 50.68 294.954c44.44 12.795 73.834 28.683 90.46 50.123 15.804 20.383 18.445 45.188 12.157 71.963 23.635 7.218 62.826 11.32 100.986 10.905 38.28-.416 76.213-5.67 96.373-13.44-4.608-25.936-.182-50.215 16.983-70.07 17.928-20.738 48.197-36.53 93.4-49.488-.972-63.406-15.24-132.688-46.868-185.92-20.367-34.277-47.386-61.936-82.97-77.972-62.555 14.347-113.232 44.996-143.62 84.12 25.38 8.96 46.088 21.593 65.35 34.583l10.742 7.244-10.266 7.906c-26.884 20.705-46.28 43.707-65.26 67.48 28.468 22.27 47.56 52.2 29.02 65.186-33.572 23.518-170.713 1.396-119.002-78.754 6.006-9.31 15.307-13.314 26.2-13.496 14.635-.244 32.144 6.414 48.4 16.37 17.11-21.452 35.198-43.144 59.1-63.32-18.538-11.88-37.98-22.425-61.975-29.265l-12.29-3.503 7.066-10.65c28.184-42.48 75.737-75.727 134.613-94.523-13.362-3.012-27.71-4.612-43.118-4.612h-.002zm126.594 189.502c10.892.182 20.19 4.187 26.197 13.496 51.712 80.15-85.427 102.272-119 78.754-31.496-22.06 45.603-93.04 92.804-92.25zM252.2 309.057c13.922 0 38.53 68.05 30.277 79.51-6.48 8.996-54.935 8.617-60.555 0-7.197-11.034 16.31-79.51 30.277-79.51zM354.71 433.13c-10.557 3.91-23.223 6.832-37.17 8.952l5.94 48.89h53.416l-22.185-57.84zm-207.888 1.57l-18.5 56.273h47.092l5.914-48.684c-12.764-1.877-24.484-4.38-34.506-7.59zm152.17 9.667c-13.13 1.28-26.996 1.98-41.078 2.21v44.396h46.74l-5.662-46.606zm-99.107.14l-5.647 46.466h44.99V446.6c-13.444-.204-26.714-.894-39.343-2.094z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Degen</div>
+                    </div>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <div class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black ">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2C9.243 2 7 4.243 7 7v2H6c-1.103 0-2 .897-2 2v9c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-9c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v2H9V7zm9.002 13H13v-2.278c.595-.347 1-.985 1-1.722 0-1.103-.897-2-2-2s-2 .897-2 2c0 .736.405 1.375 1 1.722V20H6v-9h12l.002 9z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">PinkLock</div>
+                    </div>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <div class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black ">
+                    <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M230,120a102,102,0,0,0-204,0,6,6,0,0,0,2.27,4.69l.13.11L122,195v23H112a6,6,0,0,0,0,12h32a6,6,0,0,0,0-12H134V195l93.6-70.2h0A6,6,0,0,0,230,120Zm-12.2-6H173.9c-1.3-42.92-16.5-68.62-28.43-82.3A90.2,90.2,0,0,1,217.8,114ZM128,31.43A77.14,77.14,0,0,1,143.42,49C157.26,70.08,161.24,95,161.89,114H94.11c1.06-31.88,10.49-52.86,18.47-65A76.69,76.69,0,0,1,128,31.43ZM157.8,126,128,179.65,98.2,126Zm-73.33,0,24.62,44.32L50,126Zm87.06,0H206l-59.09,44.32Zm-61-94.3C98.6,45.38,83.4,71.08,82.1,114H38.2A90.2,90.2,0,0,1,110.53,31.7Z"></path>
+                      </svg>
+                    </div>
+                    <div class="flex-1 line-clamp-1 whitespace-nowrap">Airdrops</div>
+                   </div>
+                   <div class="transition-all"></div>
+                  </li>
+                  <li>
+                      <div class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black ">
+                        <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="none" d="M0 0h24v24H0z"></path><path d="M9 4c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm3-7.5h-2v5H8v-5H6V9h6v1.5zm8.25-6.75L23 5l-2.75 1.25L19 9l-1.25-2.75L15 5l2.75-1.25L19 1l1.25 2.75zm0 14L23 19l-2.75 1.25L19 23l-1.25-2.75L15 19l2.75-1.25L19 15l1.25 2.75z"></path>
+                          </svg>
+                        </div>
+                        <div class="flex-1 line-clamp-1 whitespace-nowrap">Token</div>
+                      </div>
+                      <div class="transition-all"></div>
+                  </li>
+                </ul>
+                <div class="ant-divider ant-divider-horizontal" role="separator"></div>
+                <ul class="my-2">
+                  <li>
+                    <a href="https://legacy.pinksale.finance/private-sales" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.995 6.903a.997.997 0 0 0-.547-.797l-7.973-4a.997.997 0 0 0-.895-.002l-8.027 4c-.297.15-.502.437-.544.767-.013.097-1.145 9.741 8.541 15.008a.995.995 0 0 0 .969-.009c9.307-5.259 8.514-14.573 8.476-14.967zm-8.977 12.944c-6.86-4.01-7.14-10.352-7.063-12.205l7.071-3.523 6.998 3.511c.005 1.87-.481 8.243-7.006 12.217z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Private Sales</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " href="/leaderboards">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M255 471L91.7 387V41h328.6v346zm-147.3-93.74L255 453l149.3-75.76V57H107.7v320.26zm187.61-168.34l-14.5-46 38.8-28.73-48.27-.43L256 87.94l-15.33 45.78-48.27.43 38.8 28.73-14.5 46 39.31-28zM254.13 311.5l98.27-49.89v-49.9l-98.14 49.82-94.66-48.69v50zm.13 32.66l-94.66-48.69v50l94.54 48.62 98.27-49.89v-49.9z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Leaderboards</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " href="/buy-crypto-fiat">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="15.5" cy="13.5" r="2.5"></circle>
+                          <path d="M12 13.5c0-.815.396-1.532 1-1.988A2.47 2.47 0 0 0 11.5 11a2.5 2.5 0 1 0 0 5 2.47 2.47 0 0 0 1.5-.512 2.486 2.486 0 0 1-1-1.988z"></path>
+                          <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM4 18V6h16l.002 12H4z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Buy Crypto Fiat</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " href="/bridge">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M740 161c-61.8 0-112 50.2-112 112 0 50.1 33.1 92.6 78.5 106.9v95.9L320 602.4V318.1c44.2-15 76-56.9 76-106.1 0-61.8-50.2-112-112-112s-112 50.2-112 112c0 49.2 31.8 91 76 106.1V706c-44.2 15-76 56.9-76 106.1 0 61.8 50.2 112 112 112s112-50.2 112-112c0-49.2-31.8-91-76-106.1v-27.8l423.5-138.7a50.52 50.52 0 0 0 34.9-48.2V378.2c42.9-15.8 73.6-57 73.6-105.2 0-61.8-50.2-112-112-112zm-504 51a48.01 48.01 0 0 1 96 0 48.01 48.01 0 0 1-96 0zm96 600a48.01 48.01 0 0 1-96 0 48.01 48.01 0 0 1 96 0zm408-491a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Bridge</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " href="/antibot">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                          <path d="M8 4h8a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2m-4 0h-4a2 2 0 0 1 -2 -2v-4"></path>
+                          <path d="M12 2v2"></path>
+                          <path d="M9 12v9"></path>
+                          <path d="M15 15v6"></path>
+                          <path d="M5 16l4 -2"></path>
+                          <path d="M9 18h6"></path>
+                          <path d="M14 8v.01"></path>
+                          <path d="M3 3l18 18"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Anti-Bot</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " href="/multi-sender">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="m21.426 11.095-17-8A.999.999 0 0 0 3.03 4.242L4.969 12 3.03 19.758a.998.998 0 0 0 1.396 1.147l17-8a1 1 0 0 0 0-1.81zM5.481 18.197l.839-3.357L12 12 6.32 9.16l-.839-3.357L18.651 12l-13.17 6.197z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Multi-Sender</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                </ul>
+                <div class="ant-divider ant-divider-horizontal" role="separator"></div>
+                <ul class="my-2">
+                  <li>
+                    <a href="https://www.dexview.com/" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M888 792H200V168c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v688c0 4.4 3.6 8 8 8h752c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM305.8 637.7c3.1 3.1 8.1 3.1 11.3 0l138.3-137.6L583 628.5c3.1 3.1 8.2 3.1 11.3 0l275.4-275.3c3.1-3.1 3.1-8.2 0-11.3l-39.6-39.6a8.03 8.03 0 0 0-11.3 0l-230 229.9L461.4 404a8.03 8.03 0 0 0-11.3 0L266.3 586.7a8.03 8.03 0 0 0 0 11.3l39.5 39.7z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">dexview.com</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a href="https://t.me/PinkSaleTracking" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M193 796c0 17.7 14.3 32 32 32h574c17.7 0 32-14.3 32-32V563c0-176.2-142.8-319-319-319S193 386.8 193 563v233zm72-233c0-136.4 110.6-247 247-247s247 110.6 247 247v193H404V585c0-5.5-4.5-10-10-10h-44c-5.5 0-10 4.5-10 10v171h-75V563zm-48.1-252.5l39.6-39.6c3.1-3.1 3.1-8.2 0-11.3l-67.9-67.9a8.03 8.03 0 0 0-11.3 0l-39.6 39.6a8.03 8.03 0 0 0 0 11.3l67.9 67.9c3.1 3.1 8.1 3.1 11.3 0zm669.6-79.2l-39.6-39.6a8.03 8.03 0 0 0-11.3 0l-67.9 67.9a8.03 8.03 0 0 0 0 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l67.9-67.9c3.1-3.2 3.1-8.2 0-11.3zM832 892H192c-17.7 0-32 14.3-32 32v24c0 4.4 3.6 8 8 8h688c4.4 0 8-3.6 8-8v-24c0-17.7-14.3-32-32-32zM484 180h56c4.4 0 8-3.6 8-8V76c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v96c0 4.4 3.6 8 8 8z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Pools alert</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a href="https://docs.pinksale.finance/important/kyc-and-audit-at-pinksale" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17.03 9.78a.75.75 0 0 0-1.06-1.06l-5.47 5.47-2.47-2.47a.75.75 0 0 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l6-6Z"></path>
+                          <path d="m14.136 1.2 1.375 1.01c.274.201.593.333.929.384l1.687.259a3.61 3.61 0 0 1 3.02 3.021l.259 1.686c.051.336.183.655.384.929l1.01 1.375a3.61 3.61 0 0 1 0 4.272l-1.01 1.375a2.106 2.106 0 0 0-.384.929l-.259 1.687a3.61 3.61 0 0 1-3.021 3.02l-1.686.259a2.106 2.106 0 0 0-.929.384l-1.375 1.01a3.61 3.61 0 0 1-4.272 0l-1.375-1.01a2.106 2.106 0 0 0-.929-.384l-1.687-.259a3.61 3.61 0 0 1-3.02-3.021l-.259-1.686a2.117 2.117 0 0 0-.384-.929L1.2 14.136a3.61 3.61 0 0 1 0-4.272l1.01-1.375c.201-.274.333-.593.384-.929l.259-1.687a3.61 3.61 0 0 1 3.021-3.02l1.686-.259c.336-.051.655-.183.929-.384L9.864 1.2a3.61 3.61 0 0 1 4.272 0Zm-3.384 1.209-1.375 1.01a3.614 3.614 0 0 1-1.59.658l-1.686.258a2.111 2.111 0 0 0-1.766 1.766l-.258 1.686a3.61 3.61 0 0 1-.658 1.589l-1.01 1.376a2.11 2.11 0 0 0 0 2.496l1.01 1.375c.344.469.57 1.015.658 1.59l.258 1.686c.14.911.855 1.626 1.766 1.766l1.686.258a3.61 3.61 0 0 1 1.589.658l1.376 1.01a2.11 2.11 0 0 0 2.496 0l1.375-1.01a3.613 3.613 0 0 1 1.59-.657l1.686-.26a2.11 2.11 0 0 0 1.766-1.765l.258-1.686a3.61 3.61 0 0 1 .658-1.589l1.01-1.376a2.11 2.11 0 0 0 0-2.496l-1.01-1.375a3.613 3.613 0 0 1-.657-1.59l-.26-1.686a2.11 2.11 0 0 0-1.765-1.766l-1.686-.258a3.61 3.61 0 0 1-1.589-.658l-1.376-1.01a2.11 2.11 0 0 0-2.496 0Z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">KYC &amp; Audit</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a href="https://docs.pinksale.finance" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Docs</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a href="https://shop.pinksale.finance/" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M922.9 701.9H327.4l29.9-60.9 496.8-.9c16.8 0 31.2-12 34.2-28.6l68.8-385.1c1.8-10.1-.9-20.5-7.5-28.4a34.99 34.99 0 0 0-26.6-12.5l-632-2.1-5.4-25.4c-3.4-16.2-18-28-34.6-28H96.5a35.3 35.3 0 1 0 0 70.6h125.9L246 312.8l58.1 281.3-74.8 122.1a34.96 34.96 0 0 0-3 36.8c6 11.9 18.1 19.4 31.5 19.4h62.8a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7h161.1a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7H923c19.4 0 35.3-15.8 35.3-35.3a35.42 35.42 0 0 0-35.4-35.2zM305.7 253l575.8 1.9-56.4 315.8-452.3.8L305.7 253zm96.9 612.7c-17.4 0-31.6-14.2-31.6-31.6 0-17.4 14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6zm325.1 0c-17.4 0-31.6-14.2-31.6-31.6 0-17.4 14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Shop</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                </ul>
+                <div class="ant-divider ant-divider-horizontal" role="separator"></div>
+                <ul class="my-2">
+                  <li>
+                    <div class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black ">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M236.88,26.19a9,9,0,0,0-9.16-1.57L25.06,103.93a14.22,14.22,0,0,0,2.43,27.21L80,141.45V200a15.92,15.92,0,0,0,10,14.83,15.91,15.91,0,0,0,17.51-3.73l25.32-26.26L173,220a15.88,15.88,0,0,0,10.51,4,16.3,16.3,0,0,0,5-.79,15.85,15.85,0,0,0,10.67-11.63L239.77,35A9,9,0,0,0,236.88,26.19Zm-61.14,36L86.15,126.35l-49.6-9.73ZM96,200V152.52l24.79,21.74Zm87.53,8L100.85,135.5l119-85.29Z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">telegram</div>
+                    </div>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/pinkecosystem" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                      <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 line-clamp-1 whitespace-nowrap">Twitter</div>
+                    </a>
+                    <div class="transition-all"></div>
+                  </li>
+                  <li>
+                      <a href="https://www.facebook.com/profile.php?id=100085950917722" class="transition-all flex items-center active:bg-[#fff0f3] dark:active:bg-black " target="_blank" rel="nofollow noreferrer">
+                        <div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M880 112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V144c0-17.7-14.3-32-32-32zm-32 736H663.9V602.2h104l15.6-120.7H663.9v-77.1c0-35 9.7-58.8 59.8-58.8h63.9v-108c-11.1-1.5-49-4.8-93.2-4.8-92.2 0-155.3 56.3-155.3 159.6v89H434.9v120.7h104.3V848H176V176h672v672z"></path>
+                          </svg>
+                        </div>
+                        <div class="flex-1 line-clamp-1 whitespace-nowrap">Facebook</div>
+                      </a>
+                      <div class="transition-all"></div>
+                  </li>
+                  </ul>
+                  <div class="ant-divider ant-divider-horizontal" role="separator"></div>
+                  <ul class="my-2">
+                    <li>
+                      <div class="transition-all my-2 flex items-center capitalize hover:text-brand cursor-pointer pr-[4px]"><div class="grid w-[38px] h-[38px] px-[10px] place-content-center rounded-md">
+                        <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8V16Z" fill="currentColor"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12 4V8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16V20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z" fill="currentColor"></path>
+                        </svg>
+                      </div>
+                      <div class="flex-1 group-hover:block line-clamp-1 whitespace-nowrap">light</div>
+
+                      <div class="w-[18px] hidden-against-adblock group-hover:block transition-all" style={{transform: "none"}}>
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    </li>
+                  </ul>
+                  </div>
+                  </div>
+            </div>
+            </div>
+      <div tabindex="0" aria-hidden="true" data-sentinel="end" style={{width: '0px', height: '0px', overflow: 'hidden', outline: "none", position: "absolute"}}></div></div></div>
+
+    </Aux>
+
 
   );
 }
