@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
+import Head from 'next/head';
 
 export const metadata = {
   title: "PinkSale - ",
@@ -11,6 +12,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+      <link rel="shortcut icon" href="../../public/images/pinksale.jpg" />
+      </Head>
       <body className={inter.className}>
         {children}
       </body>

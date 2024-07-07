@@ -26,6 +26,12 @@ import polygon from '../../public/polygon.png'
 import avax from '../../public/avax.svg'
 import fantom from '../../public/fantom.svg'
 import Aux from "@/components/hoc/Auxiliary/Auxiliary";
+import cronos from '../../public/images/cronos.svg'
+import bitrock from '../../public/images/bitrock.png'
+import core from '../../public/images/core.png'
+import dogechain from '../../public/images/dogechain.png'
+import pulse from '../../public/images/pulse.png'
+
 
 
 export default function Home() {
@@ -655,7 +661,7 @@ export default function Home() {
                             </tr>
 
                             <tr>
-                              <td class="py-2 px-1"><Image alt="Fantom Opera" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={fantom} /></td>
+                              <td class="py-2 px-1"><Image alt="Cronos Mainnet" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={cronos} /></td>
                               <td class="py-2 px-1">-</td>
                               <td class="py-2 px-1">-</td>
                               <td class="py-2 px-1">-</td>
@@ -663,7 +669,7 @@ export default function Home() {
                             </tr>
 
                             <tr>
-                              <td class="py-2 px-1"><Image alt="Fantom Opera" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={fantom} /></td>
+                              <td class="py-2 px-1"><Image alt="Bitrock" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={bitrock} /></td>
                               <td class="py-2 px-1">2</td>
                               <td class="py-2 px-1">4</td>
                               <td class="py-2 px-1">-</td>
@@ -671,7 +677,7 @@ export default function Home() {
                             </tr>
 
                             <tr>
-                              <td class="py-2 px-1"><Image alt="Fantom Opera" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={fantom} /></td>
+                              <td class="py-2 px-1"><Image alt="Core" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={core} /></td>
                               <td class="py-2 px-1">2</td>
                               <td class="py-2 px-1">158</td>
                               <td class="py-2 px-1">-</td>
@@ -679,7 +685,7 @@ export default function Home() {
                             </tr>
 
                             <tr>
-                              <td class="py-2 px-1"><Image alt="Fantom Opera" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={fantom} /></td>
+                              <td class="py-2 px-1"><Image alt="Dogechain" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={dogechain} /></td>
                               <td class="py-2 px-1">29</td>
                               <td class="py-2 px-1">301</td>
                               <td class="py-2 px-1">-</td>
@@ -687,7 +693,7 @@ export default function Home() {
                             </tr>
 
                             <tr>
-                              <td class="py-2 px-1"><Image alt="Fantom Opera" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={fantom} /></td>
+                              <td class="py-2 px-1"><Image alt="Pulse Chain" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={pulse} /></td>
                               <td class="py-2 px-1">10</td>
                               <td class="py-2 px-1">304</td>
                               <td class="py-2 px-1">$11.6K</td>
@@ -695,7 +701,7 @@ export default function Home() {
                             </tr>
 
                             <tr>
-                              <td class="py-2 px-1"><Image alt="Fantom Opera" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={fantom} /></td>
+                              <td class="py-2 px-1"><Image alt="Base Mainnet" loading="lazy" width="56" height="71" decoding="async" data-nimg="1" class="rounded-full p-[1px] border border-brand-lighter w-6 h-6" style={{color:"transparent"}} src={base} /></td>
                               <td class="py-2 px-1">117</td>
                               <td class="py-2 px-1">6.9K</td>
                               <td class="py-2 px-1">$2M</td>
