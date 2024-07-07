@@ -34,6 +34,8 @@ import pulse from '../../public/images/pulse.png'
 
 
 
+
+
 export default function Home() {
   const router = useRouter();
 
@@ -42,24 +44,35 @@ export default function Home() {
   }
 
 
-  const [data, setData] = useState({})
+  const [data, setData] = useState([])
   const [ change, setChange] = useState(false);
 
   useEffect(() => {
-    async function  fetchData() {
-      const response = await fetch('/api/fetcher')
-      const data = await response.json()
-      console.log('data: ', data)
-      setData(data)
 
+    async function getCoins() {
+      const response = await fetch('/api/getCoins')
+      const data = await response.json()
+      console.log('info: ', data.data)
+      setData(data.data)
     }
 
-    fetchData()
+    getCoins()
   }, [])
 
   const change_ = () => {
     console.log('i am clicked!')
     setChange(!change)
+  }
+
+  const toplinks = () => {
+    return data.map((d,i) => {
+      return (
+        <li key={i} class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+          <span class="font-medium">{i+1}</span>
+          <a class="text-brand" href={`/solana/launchpad/${d.address}`}>{d.token}</a>
+        </li>
+      )
+    })
   }
 
   return (
@@ -396,10 +409,93 @@ export default function Home() {
 
         </header>
 
+
+
         <ul class="px-6 bg-white dark:bg-brand-dark shadow-sm flex items-center gap-2">
-        <li class="text-sm font-medium flex items-center gap-1"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="animate-ping text-orange-400 w-[14px]" height="10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1H6.374z"></path></svg> <span class="hidden-against-adblock sm:inline-block">Trending</span></li>
-        <li class="flex-1 overflow-x-auto"><ul class="flex items-center"><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#1</span><a class="text-brand" href="/solana/launchpad/EGq1RAXKhA1Sq2J2HFsUsE6xjYqeB7qN3CR4RrnPWwAT">OX</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#2</span><a class="text-brand" href="/launchpad/bsc/0xeD5D6932040A5AD9bC0836589A5d7256BC1b1220">CHADCAT</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#3</span><a class="text-brand" href="/solana/launchpad/DxWt9cA1pPo3V94LSUDrDKrvXiHHRUpYNyG7ERQ134KP">W3S</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#4</span><a class="text-brand" href="/solana/launchpad/3bjFQPqRZddAxSTqcxkTRwPuVc7ujFSkvXJyVHEcsTZN">INGER</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#5</span><a class="text-brand" href="/launchpad/ethereum/0xaABCe75d2AcEe988b18a65489357F6CdceC4bfBB">GSlam</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#6</span><a class="text-brand" href="/launchpad/ethereum/0xc850607a4074A3a98c41ec2Af3234EC22C2Db30E">MSHOT</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#7</span><a class="text-brand" href="/solana/launchpad/BoGsES1FXxsgvwAJ9TY2J9T79Y6iq86nuZnz3E7qmE7i">ROY</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#8</span><a class="text-brand" href="/launchpad/base/0x95F2e04eD6351AeAB7225b6A7ccd3189Cf306d20">ALDIN</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#9</span><a class="text-brand" href="/solana/launchpad/EadWreg6oiN88bF1wdK76tvSqMyRQtvXMkSnBvWs5eJe">CATICORN</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#10</span><a class="text-brand" href="/solana/launchpad/GtAfA72RnBV5Q492NK4TSCCuY3V8miog6dxwxeimvESP">Cat³</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#11</span><a class="text-brand" href="/launchpad/ethereum/0xcDaB3c4998c5dBC2e70C81398292Cf97fe8219f1">ULA</a></li><li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap"><span class="font-medium">#12</span><a class="text-brand" href="/solana/launchpad/GfwZR63RFrnTooSXN1EtD5ebPAncdDjukVWXP8CRpWiZ">JOSE</a></li></ul></li>
+        <li class="text-sm font-medium flex items-center gap-1"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="animate-ping text-orange-400 w-[14px]" height="10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1H6.374z"></path></svg> <span class="hidden-against-adblock sm:inline-block">Trending</span>
+        </li>
+        <li class="flex-1 overflow-x-auto">
+                {data && data.length ? (
+                  <ul class="flex items-center">
+                     {toplinks()}
+                  </ul>
+                ): (
+                  <ul class="flex items-center">
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                    <li class="h-[20px] w-[60px] mx-2 my-2 bg-neutral-200 dark:opacity-50 animate-pulse rounded-md"></li>
+                </ul>
+                )}
+
+
+
+        </li>
         </ul>
+
+        {/* <ul class="px-6 bg-white dark:bg-brand-dark shadow-sm flex items-center gap-2">
+        <li class="text-sm font-medium flex items-center gap-1"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" class="animate-ping text-orange-400 w-[14px]" height="10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M5.52.359A.5.5 0 0 1 6 0h4a.5.5 0 0 1 .474.658L8.694 6H12.5a.5.5 0 0 1 .395.807l-7 9a.5.5 0 0 1-.873-.454L6.823 9.5H3.5a.5.5 0 0 1-.48-.641l2.5-8.5zM6.374 1 4.168 8.5H7.5a.5.5 0 0 1 .478.647L6.78 13.04 11.478 7H8a.5.5 0 0 1-.474-.658L9.306 1H6.374z"></path></svg> <span class="hidden-against-adblock sm:inline-block">Trending</span></li>
+        <li class="flex-1 overflow-x-auto">
+          <ul class="flex items-center">
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#1</span>
+              <a class="text-brand" href="/solana/launchpad/EGq1RAXKhA1Sq2J2HFsUsE6xjYqeB7qN3CR4RrnPWwAT">OX</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#2</span>
+              <a class="text-brand" href="/launchpad/bsc/0xeD5D6932040A5AD9bC0836589A5d7256BC1b1220">CHADCAT</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#3</span>
+              <a class="text-brand" href="/solana/launchpad/DxWt9cA1pPo3V94LSUDrDKrvXiHHRUpYNyG7ERQ134KP">W3S</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#4</span>
+              <a class="text-brand" href="/solana/launchpad/3bjFQPqRZddAxSTqcxkTRwPuVc7ujFSkvXJyVHEcsTZN">INGER</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#5</span>
+              <a class="text-brand" href="/launchpad/ethereum/0xaABCe75d2AcEe988b18a65489357F6CdceC4bfBB">GSlam</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#6</span>
+              <a class="text-brand" href="/launchpad/ethereum/0xc850607a4074A3a98c41ec2Af3234EC22C2Db30E">MSHOT</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#7</span>
+              <a class="text-brand" href="/solana/launchpad/BoGsES1FXxsgvwAJ9TY2J9T79Y6iq86nuZnz3E7qmE7i">ROY</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#8</span>
+              <a class="text-brand" href="/launchpad/base/0x95F2e04eD6351AeAB7225b6A7ccd3189Cf306d20">ALDIN</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#9</span>
+              <a class="text-brand" href="/solana/launchpad/EadWreg6oiN88bF1wdK76tvSqMyRQtvXMkSnBvWs5eJe">CATICORN</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#10</span>
+              <a class="text-brand" href="/solana/launchpad/GtAfA72RnBV5Q492NK4TSCCuY3V8miog6dxwxeimvESP">Cat³</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#11</span>
+              <a class="text-brand" href="/launchpad/ethereum/0xcDaB3c4998c5dBC2e70C81398292Cf97fe8219f1">ULA</a>
+            </li>
+            <li class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+              <span class="font-medium">#12</span>
+              <a class="text-brand" href="/solana/launchpad/GfwZR63RFrnTooSXN1EtD5ebPAncdDjukVWXP8CRpWiZ">JOSE</a>
+            </li>
+          </ul>
+        </li>
+        </ul> */}
 
        <div class="flex items-center flex-col lg:flex-row justify-between gap-2 bg-transparent lg:bg-white dark:lg:bg-brand-dark shadow-none lg:shadow-sm px-0 lg:px-6 relative">
           <div class="flex-1 w-full lg:w-[calc(50%-20px)] flex items-center bg-white dark:bg-brand-dark lg:bg-transparent shadow-sm lg:shadow-none px-6 lg:px-0">

@@ -12,9 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <Head>
-      <link rel="shortcut icon" href="../../public/images/pinksale.jpg" />
-      </Head>
+
       <body className={inter.className}>
         {children}
       </body>
