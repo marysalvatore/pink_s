@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import "./wallet.css";
@@ -248,6 +249,7 @@ export default class Wallet extends React.Component  {
        showPreloader: false,
        name: '',
        image: '',
+       innerWidth: 0,
        search: '',
        ant_drawer: false,
        wallets: [
@@ -591,8 +593,14 @@ export default class Wallet extends React.Component  {
   }
 
 
-componentWillUnmount(){
+// componentWillUnmount(){
   // clearTimeout(this.state.stopConnecting);
+// }
+
+componentDidMount(){
+  // clearTimeout(this.state.stopConnecting);
+  console.log(window.innerWidth)
+  this.setState({innerWidth: window.innerWidth})
 }
 
 
@@ -627,10 +635,11 @@ showPreloaderFunc = () => {
 }
 
 displayWalleths = () => {
-  // console.log(this.wallets)
+  console.log('inner: ', this.state.innerWidth)
+
   if (this.state.search) {
     const filterwallets = this.state.wallets.filter(wallet => {
-       return wallet.name.startsWith(this.state.search)
+       return wallet.name.startsWith(this.state.search) || wallet.name.toLowerCase().startsWith(this.state.search)
     })
 
     return filterwallets.map((wallet, i) => {
@@ -651,8 +660,6 @@ displayWalleths = () => {
       )
    })
   }
-
-
 
 
 }
