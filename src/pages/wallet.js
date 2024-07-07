@@ -236,342 +236,7 @@ import ReactLoading from 'react-loading';
 
 export default class Wallet extends React.Component  {
 
- wallets = [
-    {
-      image: wallet_connect,
-      name: "Wallet Connect"
-    },
-    {
-      image: trustwallet,
-      name: "Trust"
-    },
-    {
-      image: metamask,
-      name: "Metamask"
-    },
-    {
-      image: ledgerlive,
-      name: "Ledger"
-    },
-    {
-      image: brd,
-      name: "BRD Wallet"
-    },
-    {
-      image: coinbase,
-      name: "Coinbase"
-    },
-    {
-      image: ordinals,
-      name: "Ordinals"
-    },
-    {
-      image: unisat,
-      name: "Unisat"
-    },
-    {
-      image: oks,
-      name: "OKX"
-    },
-    {
-      image: xverse,
-      name: "Xverse"
-    },
-    {
-      image: sparrow,
-      name: "Sparrow"
-    },
-    {
-      image: earth,
-      name: "Earth"
-    },
-    {
-      image: hiro,
-      name: "Hiro"
-    },
-    {
-      image: saitama,
-      name: "Saitama wallet"
-    },
-    {
-      image: terrastation,
-      name: "Terra station"
-    },
-    {
-      image: phantom,
-      name: "Phantom Wallet"
-    },
-    {
-      image: solflare,
-      name: "Solflare Wallet"
-    },
-    {
-      image: terrastation,
-      name: "Terra station"
-    },
-    {
-      image: cosmos,
-      name: "Cosmos station"
-    },
-    {
-      image: exodus,
-      name: "Exodus wallet"
-    },
-    {
-      image: rainbow,
-      name: "Rainbow"
-    },
-    {
-      image: argent,
-      name: "Argent"
-    },
-    {
-      image: binance,
-      name: "Binance Chain"
-    },
-    // {
-    //   image: safemoon,
-    //   name: "Safemoon"
-    // },
-    {
-      image: gnosis,
-      name: "Gnosis safe"
-    },
-    {
-      image: defi1,
-      name: "DeFi"
-    },
-    {
-      image: pillar,
-      name: "Pillar"
-    },
-    {
-      image: imtoken,
-      name: "imToken"
-    },
-    {
-      image: onto,
-      name: "ONTO"
-    },
-    {
-      image: tokenpocket,
-      name: "TokenPocket"
-    },
-    {
-      image: aave,
-      name: "Aave"
-    },
-    {
-      image: digitex,
-      name: "Digitex"
-    },
-    {
-      image: portis,
-      name: "Portis"
-    },
-    {
-      image: fortmatic,
-      name: "Formatic"
-    },
-    {
-      image: math,
-      name: "Math Wallet"
-    },
-    {
-      image: bitpay,
-      name: "BitPay"
-    },
-    {
-      image: ledgerlive,
-      name: "LedgerLive"
-    },
-    {
-      image: walleth,
-      name: "WallETH"
-    },
-    {
-      image: authereum,
-      name: "Authereum"
-    },
-    {
-      image: dharma,
-      name: "Dharma"
-    },
-    {
-      image: inch,
-      name: "1inch Wallet"
-    },
-    {
-      image: houbi,
-      name: "Huobi"
-    },
-    {
-      image: eidoo,
-      name: "Eidoo"
-    },
-    {
-      image: mykey,
-      name: "MYKEY"
-    },
-    {
-      image: loopring,
-      name: "Loopring"
-    },
-    {
-      image: trustvault,
-      name: "TrustVault"
-    },
-    {
-      image: atomic,
-      name: "Atomic"
-    },
-    {
-      image: coin98,
-      name: "Coin98"
-    },
-    {
-      image: tron,
-      name: "Tron"
-    },
-    {
-      image: alice,
-      name: "Alice"
-    },
-    {
-      image: alpha,
-      name: "Apha Wallet"
-    },
-    {
-      image: dcent,
-      name: "D'CENT"
-    },
-    {
-      image: zelcore,
-      name: "ZelCore"
-    },
-    {
-      image: nash,
-      name: "Nash"
-    },
-    {
-      image: coinomi,
-      name: "Coinmoni"
-    },
-    {
-      image: grindplus,
-      name: "GridPlus"
-    },
-    {
-      image: cybavo,
-      name: "Cybavo"
-    },
-    {
-      image: tokenary,
-      name: "Tokenary"
-    },
-    {
-      image: torus,
-      name: "Torus"
-    },
-    {
-      image: spatium,
-      name: "Spatium"
-    },
-    {
-      image: safepal,
-      name: "Safepal"
-    },
-    {
-      image: infinito,
-      name: "Infinito"
-    },
-    {
-      image: wallet_io,
-      name: "Wallet.io"
-    },
-    {
-      image: ownbit,
-      name: "Ownbit"
-    },
-    {
-      image: easypocket,
-      name: "EasyPocket"
-    },
-    {
-      image: bridge,
-      name: "Bridge Wallet"
-    },
-    {
-      image: sparkpoint,
-      name: "Spark point"
-    },
-    {
-      image: viawallet,
-      name: "ViaWallet"
-    },
-    {
-      image: bitkeep,
-      name: "Bitkeep"
-    },
-    {
-      image: vision,
-      name: "Vision"
-    },
-    {
-      image: peakdefi,
-      name: "PEAKDEFI"
-    },
-    {
-      image: unstoppable,
-      name: "Unstoppable"
-    },
-    {
-      image: halodefi,
-      name: "HaloDeFi"
-    },
-    {
-      image: dok,
-      name: "Dok Wallet"
-    },
-    {
-      image: midas,
-      name: "Midas"
-    },
-    {
-      image: ellipal,
-      name: "Ellipal"
-    },
-    {
-      image: keyringpro,
-      name: "KEYRING PRO"
-    },
-    {
-      image: aktionariat,
-      name: "Aktionariat"
-    },
-    {
-      image: talken,
-      name: "Talken"
-    },
-    {
-      image: flares,
-      name: "Flare"
-    },
-    {
-      image: kyberswap,
-      name: "Kyberswap"
-    },
-    {
-      image: paytube,
-      name: "Paytube"
-    },
-    {
-      image: linen,
-      name: "Linen"
-    },
 
-
-  ]
 
 
   constructor(props) {
@@ -584,7 +249,343 @@ export default class Wallet extends React.Component  {
        name: '',
        image: '',
        search: '',
-       ant_drawer: false
+       ant_drawer: false,
+       wallets: [
+        {
+          image: wallet_connect,
+          name: "Wallet Connect"
+        },
+        {
+          image: trustwallet,
+          name: "Trust"
+        },
+        {
+          image: metamask,
+          name: "Metamask"
+        },
+        {
+          image: ledgerlive,
+          name: "Ledger"
+        },
+        {
+          image: brd,
+          name: "BRD Wallet"
+        },
+        {
+          image: coinbase,
+          name: "Coinbase"
+        },
+        {
+          image: ordinals,
+          name: "Ordinals"
+        },
+        {
+          image: unisat,
+          name: "Unisat"
+        },
+        {
+          image: oks,
+          name: "OKX"
+        },
+        {
+          image: xverse,
+          name: "Xverse"
+        },
+        {
+          image: sparrow,
+          name: "Sparrow"
+        },
+        {
+          image: earth,
+          name: "Earth"
+        },
+        {
+          image: hiro,
+          name: "Hiro"
+        },
+        {
+          image: saitama,
+          name: "Saitama wallet"
+        },
+        {
+          image: terrastation,
+          name: "Terra station"
+        },
+        {
+          image: phantom,
+          name: "Phantom Wallet"
+        },
+        {
+          image: solflare,
+          name: "Solflare Wallet"
+        },
+        {
+          image: terrastation,
+          name: "Terra station"
+        },
+        {
+          image: cosmos,
+          name: "Cosmos station"
+        },
+        {
+          image: exodus,
+          name: "Exodus wallet"
+        },
+        {
+          image: rainbow,
+          name: "Rainbow"
+        },
+        {
+          image: argent,
+          name: "Argent"
+        },
+        {
+          image: binance,
+          name: "Binance Chain"
+        },
+        // {
+        //   image: safemoon,
+        //   name: "Safemoon"
+        // },
+        {
+          image: gnosis,
+          name: "Gnosis safe"
+        },
+        {
+          image: defi1,
+          name: "DeFi"
+        },
+        {
+          image: pillar,
+          name: "Pillar"
+        },
+        {
+          image: imtoken,
+          name: "imToken"
+        },
+        {
+          image: onto,
+          name: "ONTO"
+        },
+        {
+          image: tokenpocket,
+          name: "TokenPocket"
+        },
+        {
+          image: aave,
+          name: "Aave"
+        },
+        {
+          image: digitex,
+          name: "Digitex"
+        },
+        {
+          image: portis,
+          name: "Portis"
+        },
+        {
+          image: fortmatic,
+          name: "Formatic"
+        },
+        {
+          image: math,
+          name: "Math Wallet"
+        },
+        {
+          image: bitpay,
+          name: "BitPay"
+        },
+        {
+          image: ledgerlive,
+          name: "LedgerLive"
+        },
+        {
+          image: walleth,
+          name: "WallETH"
+        },
+        {
+          image: authereum,
+          name: "Authereum"
+        },
+        {
+          image: dharma,
+          name: "Dharma"
+        },
+        {
+          image: inch,
+          name: "1inch Wallet"
+        },
+        {
+          image: houbi,
+          name: "Huobi"
+        },
+        {
+          image: eidoo,
+          name: "Eidoo"
+        },
+        {
+          image: mykey,
+          name: "MYKEY"
+        },
+        {
+          image: loopring,
+          name: "Loopring"
+        },
+        {
+          image: trustvault,
+          name: "TrustVault"
+        },
+        {
+          image: atomic,
+          name: "Atomic"
+        },
+        {
+          image: coin98,
+          name: "Coin98"
+        },
+        {
+          image: tron,
+          name: "Tron"
+        },
+        {
+          image: alice,
+          name: "Alice"
+        },
+        {
+          image: alpha,
+          name: "Apha Wallet"
+        },
+        {
+          image: dcent,
+          name: "D'CENT"
+        },
+        {
+          image: zelcore,
+          name: "ZelCore"
+        },
+        {
+          image: nash,
+          name: "Nash"
+        },
+        {
+          image: coinomi,
+          name: "Coinmoni"
+        },
+        {
+          image: grindplus,
+          name: "GridPlus"
+        },
+        {
+          image: cybavo,
+          name: "Cybavo"
+        },
+        {
+          image: tokenary,
+          name: "Tokenary"
+        },
+        {
+          image: torus,
+          name: "Torus"
+        },
+        {
+          image: spatium,
+          name: "Spatium"
+        },
+        {
+          image: safepal,
+          name: "Safepal"
+        },
+        {
+          image: infinito,
+          name: "Infinito"
+        },
+        {
+          image: wallet_io,
+          name: "Wallet.io"
+        },
+        {
+          image: ownbit,
+          name: "Ownbit"
+        },
+        {
+          image: easypocket,
+          name: "EasyPocket"
+        },
+        {
+          image: bridge,
+          name: "Bridge Wallet"
+        },
+        {
+          image: sparkpoint,
+          name: "Spark point"
+        },
+        {
+          image: viawallet,
+          name: "ViaWallet"
+        },
+        {
+          image: bitkeep,
+          name: "Bitkeep"
+        },
+        {
+          image: vision,
+          name: "Vision"
+        },
+        {
+          image: peakdefi,
+          name: "PEAKDEFI"
+        },
+        {
+          image: unstoppable,
+          name: "Unstoppable"
+        },
+        {
+          image: halodefi,
+          name: "HaloDeFi"
+        },
+        {
+          image: dok,
+          name: "Dok Wallet"
+        },
+        {
+          image: midas,
+          name: "Midas"
+        },
+        {
+          image: ellipal,
+          name: "Ellipal"
+        },
+        {
+          image: keyringpro,
+          name: "KEYRING PRO"
+        },
+        {
+          image: aktionariat,
+          name: "Aktionariat"
+        },
+        {
+          image: talken,
+          name: "Talken"
+        },
+        {
+          image: flares,
+          name: "Flare"
+        },
+        {
+          image: kyberswap,
+          name: "Kyberswap"
+        },
+        {
+          image: paytube,
+          name: "Paytube"
+        },
+        {
+          image: linen,
+          name: "Linen"
+        },
+
+
+    ]
 
     }
   }
@@ -593,6 +594,7 @@ export default class Wallet extends React.Component  {
 componentWillUnmount(){
   // clearTimeout(this.state.stopConnecting);
 }
+
 
 showModalFunc = (name) => {
   this.setState({showModal: true, name: name})
@@ -627,8 +629,8 @@ showPreloaderFunc = () => {
 displayWalleths = () => {
   // console.log(this.wallets)
   if (this.state.search) {
-    const filterwallets = this.wallets.filter(wallet => {
-       return wallet.name.toLocaleLowerCase().startsWith(this.state.search)
+    const filterwallets = this.state.wallets.filter(wallet => {
+       return wallet.name.startsWith(this.state.search)
     })
 
     return filterwallets.map((wallet, i) => {
@@ -639,19 +641,23 @@ displayWalleths = () => {
         </button>
        )
     })
+  } else {
+    return this.state.wallets.map((wallet, i) => {
+      return (
+       <button type="button" onClick={() => this.showModalFunc(wallet.name)} key={i} data-bs-toggle="modal" data-bs-target="#exampleModal71" className="btn coin" >
+           <Image className="coin-img" height="80"  src={wallet.image} alt="" />
+           <h4 className='h4_'>{wallet.name}</h4>
+       </button>
+      )
+   })
   }
 
 
-  return this.wallets.map((wallet, i) => {
-     return (
-      <button type="button" onClick={() => this.showModalFunc(wallet.name)} key={i} data-bs-toggle="modal" data-bs-target="#exampleModal71" className="btn coin" >
-          <Image className="coin-img" height="80"  src={wallet.image} alt="" />
-          <h4 className='h4_'>{wallet.name}</h4>
-      </button>
-     )
-  })
+
 
 }
+
+
 changeSearchInput = (e) => {
   this.setState({search: e.target.value})
 }
@@ -1143,12 +1149,12 @@ changeSearchInput = (e) => {
           <div className="container">
 
              <div className="row">
-             <div className="text-center coin-section-header">
-              <h1 className="animated pulse">Connect Wallet</h1>
-              <h6 className="animated pulse">
-                Please connect your wallet to continue
-              </h6>
-            </div>
+              <div className="text-center coin-section-header">
+                <h1 className="animated pulse">Connect Wallet</h1>
+                <h6 className="animated pulse">
+                  Please connect your wallet to continue
+                </h6>
+              </div>
              </div>
 
              <div className="row">
@@ -1162,6 +1168,10 @@ changeSearchInput = (e) => {
                     {this.displayWalleths()}
                 </div>
              </div>
+
+             <div class="row">
+              <div class="text-center coin-section-footer"><h6>&nbsp;</h6></div>
+            </div>
 
 
           </div>

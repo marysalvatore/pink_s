@@ -471,7 +471,7 @@ export default function Home() {
                   <div class="mx-auto pt-20">
                     <div class="shadow-sm dark:shadow-lg text-sm dark:text-brand-text-dark rounded-md bg-white dark:bg-brand-dark">
                         <div class="overflow-x-auto">
-                            <div class="overflow-x-auto w-fit whitespace-nowrap -mx-2 divide-x divide-dashed dark:divide-neutral-800">
+                            <div class="overflow-x-auto w-fit whitespace-nowrap -mx-2 divide-x divide-dashed dark:divide-neutral-300">
 
                               <a class="text-center p-4 rounded-sm text-sm inline-block w-[120px] whitespace-normal group relative overflow-hidden -mb-1" href="/solana/launchpad/5Kqug3eE9qnHVoh3EecZmdZsHbCTM7CsnbkDye7vUV3C">
                                 <figure class="inline-block relative transition-all duration-200 group-hover:scale-125 group-hover:-translate-y-2">
@@ -584,7 +584,7 @@ export default function Home() {
                               <th class="font-medium px-1">Values Locked</th>
                             </tr>
                           </thead>
-                          <tbody class="divide-y divide-dashed dark:divide-neutral-800">
+                          <tbody class="divide-y divide-dashed dark:divide-neutral-300">
 
                             <tr>
                               <td class="py-2 px-1">
