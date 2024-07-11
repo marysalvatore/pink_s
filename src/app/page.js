@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image";
+
 import pinksale from '../../public/ic-pinksale.61500ae2.svg'
 import dexview from '../../public/dexview-dark.svg';
 import baby from '../../public/baby.png'
