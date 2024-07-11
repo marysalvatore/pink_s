@@ -67,9 +67,9 @@ export default function Home() {
   const toplinks = () => {
     return data.map((d,i) => {
       return (
-        <li key={i} class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
+        <li key={i} onClick={clicked} class="px-2 py-2 flex gap-2 text-sm whitespace-nowrap">
           <span class="font-medium">{i+1}</span>
-          <a class="text-brand" href={`/solana/launchpad/${d.address}`}>{d.token}</a>
+          <a class="text-brand" href={`#`}>{d.token}</a>
         </li>
       )
     })
