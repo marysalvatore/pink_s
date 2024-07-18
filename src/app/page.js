@@ -47,17 +47,26 @@ export default function Home() {
 
   const [data, setData] = useState([])
   const [ change, setChange] = useState(false);
+  const [inputted, setInputted] = useState('')
 
   useEffect(() => {
 
     async function getCoins() {
       const response = await fetch('/api/getCoins')
       const data = await response.json()
-      console.log('info: ', data.data)
+      console.log("info: ", data)
       setData(data.data)
     }
 
+    // async function getProjects() {
+    //   const response = await fetch('/api/topProjects')
+    //   const data = await response.json()
+    //   console.log('topProjects: ', data.data)
+    // }
+
+
     getCoins()
+    // getProjects()
   }, [])
 
   const change_ = () => {
@@ -76,6 +85,12 @@ export default function Home() {
     })
   }
 
+  const produce = (e) => {
+    setInputted(e.target.value)
+  }
+
+
+  console.log('inputted: ', inputted)
   return (
     <Aux>
       <div className="site-max-width">
@@ -351,7 +366,7 @@ export default function Home() {
               <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" className="text-neutral-500 dark:text-brand-text-dark absolute left-2 top-1/2 -translate-y-1/2" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"></path>
               </svg>
-              <input placeholder="Type token symbol, address to find your launchpad" className="transition-all outline-none focus:shadow-outline border dark:text-brand-text-dark py-[5px] focus:border-brand dark:border-neutral-800 w-full px-8 text-sm dark:text-brand-text-dark dark:bg-brand-dark rounded-md" type="text" />
+              <input onChange={produce} placeholder="Type token symbol, address to find your launchpad" className="transition-all outline-none focus:shadow-outline border dark:text-brand-text-dark py-[5px] focus:border-brand dark:border-neutral-800 w-full px-8 text-sm dark:text-brand-text-dark dark:bg-brand-dark rounded-md" type="text" />
               <svg stroke="currentColor" fill="none" stroke-width="0" viewBox="0 0 24 24" className="text-neutral-500 dark:text-brand-text-dark absolute right-2 top-1/2 -translate-y-1/2" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.1925 7.70711C15.8019 7.31658 15.1688 7.31658 14.7782 7.70711L7.70718 14.7782C7.31665 15.1687 7.31665 15.8019 7.70718 16.1924C8.0977 16.5829 8.73087 16.5829 9.12139 16.1924L16.1925 9.12132C16.583 8.7308 16.583 8.09763 16.1925 7.70711Z" fill="currentColor"></path>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M3 6C3 4.34315 4.34315 3 6 3H18C19.6569 3 21 4.34315 21 6V18C21 19.6569 19.6569 21 18 21H6C4.34315 21 3 19.6569 3 18V6ZM6 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H6C5.44772 19 5 18.5523 5 18V6C5 5.44772 5.44772 5 6 5Z" fill="currentColor"></path>
@@ -360,7 +375,7 @@ export default function Home() {
           </div>
           <div className="flex-1 block md:hidden-against-adblock text-right">
             <div className="flex gap-2 sm:gap-4 items-center justify-end"><div>
-              <a href="/search">
+              <a href="#" onClick={clicked}>
                 <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                   <path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path>
                 </svg>
