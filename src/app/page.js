@@ -557,19 +557,19 @@ export default function Home() {
                                 <div class="p-6">
                                   <div class="grid grid-cols-2 gap-6">
                                     <div class="transition-all flex-1 flex flex-col items-center">
-                                      <div class="text-4xl leading-relaxed uppercase text-brand">$1.3B</div>
+                                      <div class="text-4xl leading-relaxed uppercase text-brand">$1.5B</div>
                                       <div class="text-xs">Total Liquidity Raised</div>
                                     </div>
                                     <div class="transition-all flex-1 flex flex-col items-center">
-                                    <div class="text-4xl leading-relaxed uppercase text-brand">29.3K</div>
+                                    <div class="text-4xl leading-relaxed uppercase text-brand">29.5K</div>
                                     <div class="text-xs">Total Projects</div>
                                   </div>
                                   <div class="transition-all flex-1 flex flex-col items-center">
-                                    <div class="text-4xl leading-relaxed uppercase text-brand">3.3M</div>
+                                    <div class="text-4xl leading-relaxed uppercase text-brand">3.4M</div>
                                     <div class="text-xs">Total Participants</div>
                                   </div>
                                   <div class="transition-all flex-1 flex flex-col items-center">
-                                    <div class="text-4xl leading-relaxed uppercase text-brand">$279.5M</div>
+                                    <div class="text-4xl leading-relaxed uppercase text-brand">$304.3M</div>
                                     <div class="text-xs">Total Values Locked</div>
                                   </div>
                                 </div>
@@ -578,7 +578,7 @@ export default function Home() {
                               <Image alt="PinkSale" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" style={{color:"transparent"}} src={pinksale} /></div>
                               <div class="flex-1"><a href="https://www.coingecko.com/en/coins/pinksale" class="underline hover:text-brand" target="_blank" rel="nofollow noreferrer">PINKSALE</a></div>
                               <div class="text-brand">
-                                <a href="https://www.coingecko.com/en/coins/pinksale" target="_blank" rel="nofollow noreferrer">$239.18</a>
+                                <a href="https://www.coingecko.com/en/coins/pinksale" target="_blank" rel="nofollow noreferrer">$259.35</a>
                               </div>
                             </div>
                           </div>
@@ -1002,7 +1002,7 @@ export default function Home() {
               </div>
               <div class="font-semibold uppercase mt-6">Pinksale price</div>
               <div class="mt-2">
-                <a href="https://www.coingecko.com/en/coins/pinksale" class="text-brand underline" target="_blank" rel="nofollow noreferrer">$239.18</a>
+                <a href="https://www.coingecko.com/en/coins/pinksale" class="text-brand underline" target="_blank" rel="nofollow noreferrer">$259.35</a>
               </div>
             </div>
 
