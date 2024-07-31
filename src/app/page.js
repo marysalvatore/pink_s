@@ -148,10 +148,10 @@ const testnets_chains = [{
 
 // 3. Create modal
 const metadata = {
-  name: 'My Website',
-  description: 'My Website description',
-  url: 'http://localhost:3000', // origin must match your domain & subdomain
-  icons: ['http://localhost:3000/icon.ico']
+  name: 'Pinksale App',
+  description: 'The Launchpad Protocol for Everyone!',
+  url: 'https://pinksale-launch.vercel.app/', // origin must match your domain & subdomain
+  icons: ['https://pinksale-launch.vercel.app/icon.ico']
 }
 
 
@@ -1460,12 +1460,7 @@ export default function Home() {
                   <div class="ant-drawer-title">
                     <div class="items-center gap-4 flex">
                       <div>
-                        <button type="button" onClick={clicked} class="ant-btn ant-btn-primary">
-                          <div class="flex items-center gap-1">
-                            <div>Connect</div>
-                          <div class="hidden-against-adblock sm:block">Wallet</div>
-                          </div>
-                        </button>
+                      <ConnectButton />
                       </div>
                     </div>
                   </div>
