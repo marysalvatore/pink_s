@@ -916,7 +916,12 @@ export default function Home() {
                               <h1 class="text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-semibold leading-relaxed">The Launchpad Protocol for Everyone</h1>
                               <p class="leading-relaxed pt-6">PinkSale helps everyone to create their own tokens and token sales in few seconds.</p>
                               <p class="leading-relaxed pb-4">Tokens created on PinkSale will be verified and published on explorer websites.</p>
-                              <div class="pt-4 flex gap-4 items-center justify-center md:justify-start"><a href="/launchpad/create"><button onClick={clicked} type="button" class="ant-btn ant-btn-primary"><span>Create now</span></button></a><a href="https://docs.pinksale.finance" class="hover:text-brand underline" target="_blank" rel="nofollow noreferrer">Learn more</a></div>
+                              <div class="pt-4 flex gap-4 items-center justify-center md:justify-start">
+                                {/* <a href="/launchpad/create">
+                                <button onClick={clicked} type="button" class="ant-btn ant-btn-primary"><span>Create now</span></button>
+                                </a> */}
+                                <ConnectButton type={'create'} />
+                                <a href="https://docs.pinksale.finance" class="hover:text-brand underline" target="_blank" rel="nofollow noreferrer">Learn more</a></div>
                               </div>
                           </section>
 
