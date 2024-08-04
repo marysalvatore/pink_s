@@ -20,6 +20,7 @@ const others = {
    "base": 8453,
    "optism": 10
 }
+
 export default async function getAllInfo(req, res) {
 
   const query = req.query;
